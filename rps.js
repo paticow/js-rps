@@ -9,7 +9,7 @@ function getComputerChoice(comSelection){
     else{
         comSelection = "scissors";        
     }
-    console.log(`the com selection is ${comSelection}`)
+    console.log(`The computer's selection is ${comSelection}`)
     return comSelection;
 }
 
@@ -24,7 +24,7 @@ let choicePrompt = prompt("Rock, paper, scissors, choose!")
     else if(choicePrompt.toLowerCase() === "scissors"){
         humSelection = "scissors"; 
     }
-    console.log(`your selection is ${humSelection}`)
+    console.log(`Your selection is ${humSelection}`)
     return humSelection;  
 }
 
@@ -46,3 +46,27 @@ function playRound(humanChoice, computerChoice) {
         computerScore++;
     }
 }
+
+function playGame(){
+    for (let i = 0; i < 5; i++){
+        let humanSelection = getHumanChoice();
+        let computerSelection = getComputerChoice();
+            playRound(humanSelection, computerSelection);
+        console.log(`The scores are: ${humanScore} - ${computerScore}`)    
+    }
+
+    if(computerScore > humanScore){
+        console.log("The computer wins");
+    }
+    else if(humanScore > computerScore){
+        console.log("You win!");
+    }
+    else{
+        console.log("It's a draw")
+    }
+}
+
+let humanScore = 0;
+let computerScore = 0;
+
+playGame()

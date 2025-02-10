@@ -1,6 +1,5 @@
-    function getComputerChoice(comSelection){
-   let randNum =  Math.floor(Math.random() * 3) + 1;
-
+function getComputerChoice(comSelection){
+    let randNum =  Math.floor(Math.random() * 3) + 1;
     if(randNum === 1){
         comSelection = "rock";
     }
@@ -10,20 +9,40 @@
     else{
         comSelection = "scissors";        
     }
-    console.log(`com selection ${comSelection}`)
+    console.log(`the com selection is ${comSelection}`)
+    return comSelection;
 }
 
-function getHumanChoice(humanSelection){
-   let choicePrompt = prompt("Rock, paper, scissors, choose!")
+function getHumanChoice(humSelection){
+let choicePrompt = prompt("Rock, paper, scissors, choose!")
     if(choicePrompt.toLowerCase() === "rock"){
-        humanSelection = "rock";
+        humSelection = "rock";
     }
     else if(choicePrompt.toLowerCase() === "paper"){
-        humanSelection = "paper";
+        humSelection = "paper";
     }
     else if(choicePrompt.toLowerCase() === "scissors"){
-        humanSelection = "scissors"; 
+        humSelection = "scissors"; 
     }
-    console.log(`your selection is ${humanSelection}`)   
+    console.log(`your selection is ${humSelection}`)
+    return humSelection;  
 }
-    
+
+function playRound(humanChoice, computerChoice) {
+    if(computerChoice === "scissors" && humanChoice === "rock"){
+        humanScore++;;
+    }
+    else if(computerChoice === "rock" && humanChoice === "paper"){
+        humanScore++;
+    }
+    else if(computerChoice === "paper" && humanChoice === "scissors"){
+        humanScore++;
+    } 
+    else if(humanChoice === computerChoice){
+     humanScore + 0;
+     computerScore + 0;   
+    }
+    else{
+        computerScore++;
+    }
+}

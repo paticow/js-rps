@@ -13,19 +13,22 @@ function getComputerChoice(comSelection){
     return comSelection;
 }
 
-function getHumanChoice(humSelection){
-let choicePrompt = prompt("Rock, paper, scissors, choose!")
-    if(choicePrompt.toLowerCase() === "rock"){
-        humSelection = "rock";
-    }
-    else if(choicePrompt.toLowerCase() === "paper"){
-        humSelection = "paper";
-    }
-    else if(choicePrompt.toLowerCase() === "scissors"){
-        humSelection = "scissors"; 
-    }
-    console.log(`Your selection is ${humSelection}`)
-    return humSelection;  
+function getHumanChoice(button){
+    let humSelection;
+    humSelection.addEventListener('click', function(){
+        if(button.innerText === "rock"){
+            humSelection = "rock";
+        }
+        else if(button.innerText === "paper"){
+            humSelection = "paper";
+        }
+        else if(button.innerText === "scissors"){
+            humSelection = "scissors"; 
+        }
+        });
+    
+    console.log(`Your selection is ${humSelection.innerText}`)
+    return humSelection;
 }
 
 function playRound(humanChoice, computerChoice) {
@@ -39,8 +42,8 @@ function playRound(humanChoice, computerChoice) {
         humanScore++;
     } 
     else if(humanChoice === computerChoice){
-     humanScore + 0;
-     computerScore + 0;   
+     humanScore += 0;
+     computerScore += 0;   
     }
     else{
         computerScore++;
@@ -48,13 +51,17 @@ function playRound(humanChoice, computerChoice) {
 }
 
 function playGame(){
-    for (let i = 0; i < 5; i++){
+    //for (let i = 0; i < 5; i++){
         let humanSelection = getHumanChoice();
         let computerSelection = getComputerChoice();
             playRound(humanSelection, computerSelection);
         console.log(`The scores are: ${humanScore} - ${computerScore}`)    
-    }
+    //}
 
+
+}
+
+function checkWinner(){
     if(computerScore > humanScore){
         console.log("The computer wins");
     }
@@ -66,7 +73,18 @@ function playGame(){
     }
 }
 
+const buttonR = document.getElementById('rock');
+const buttonP = document.getElementById('paper');
+const buttonS = document.getElementById('scissors');
+
+
+
 let humanScore = 0;
 let computerScore = 0;
 
 playGame()
+
+/*
+
+
+*/

@@ -4,12 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock, paper, scissors</title>
+    <link rel="stylesheet" href="rps.css">
 </head>
 <body>
-    <h1>Rock, paper, scissors, choose!</h1>
-    <button id = "rock">Rock</button>
-    <button id = "paper">Paper</button>
-    <button id = "scissors">Scissors</button>
-    <script src = "rps.js"></script>
+<script src = "rps.js"></script>
+    <div id="title">
+        <h1>Rock, paper, scissors</h1>
+        <h2>Choose:</h2>
+    </div>
+    <div id="buttons">
+        <button id="r-btn">Rock</button>
+        <button id="p-btn">Paper</button>
+        <button id="s-btn">Scissors</button>
+    </div>
+  <div id="results">
+    <div id="choices">
+        <p>The computer chose: <span id="comSelection"></span></p>
+        <p>You chose: <span id="humSelection"></span></p> 
+    </div>   
+    <h1>The scores are: <span id="scoreboard">0 - 0</span></h1>
+    <span id="total"></span>
+  </div>
 </body>
 </html>

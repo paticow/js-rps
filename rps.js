@@ -1,90 +1,53 @@
-function getComputerChoice(comSelection){
-    let randNum =  Math.floor(Math.random() * 3) + 1;
-    if(randNum === 1){
-        comSelection = "rock";
+document.addEventListener('DOMContentLoaded', () => {
+  let humanScore = 0;
+  let computerScore = 0;
+
+  const scoreboard = document.getElementById('scoreboard');
+  const buttons    = document.querySelectorAll('button');
+
+  function getComputerChoice() {
+    const choices = ['rock', 'paper', 'scissors'];
+    const selection = choices[Math.floor(Math.random() * 3)];
+    comSelection.textContent = `${selection}`;
+    return selection;
+  }
+
+  function playRound(humanChoice, computerChoice) {
+    if (computerChoice === humanChoice) return;
+
+    const winAgainst = { rock: 'scissors', paper: 'rock', scissors: 'paper' };
+    if (winAgainst[humanChoice] === computerChoice) {
+      humanScore++;
+    } else {
+      computerScore++;
     }
-    else if(randNum === 2){
-        comSelection = "paper";
-    }
-    else{
-        comSelection = "scissors";        
-    }
-    console.log(`The computer's selection is ${comSelection}`)
-    return comSelection;
+
+if (humanScore === 5 || computerScore === 5) {
+  if (humanScore === 5) {
+    total.textContent = "You win";
+  } else {
+    total.textContent = "Computer wins";
+  }
+  buttons.forEach(btn => btn.disabled = true);
+}
 }
 
-function getHumanChoice(button){
-    let humSelection;
-    humSelection.addEventListener('click', function(){
-        if(button.innerText === "rock"){
-            humSelection = "rock";
-        }
-        else if(button.innerText === "paper"){
-            humSelection = "paper";
-        }
-        else if(button.innerText === "scissors"){
-            humSelection = "scissors"; 
-        }
-        });
-    
-    console.log(`Your selection is ${humSelection.innerText}`)
-    return humSelection;
-}
+  function updateScoreboard() {
+    scoreboard.textContent = `${computerScore} - ${humanScore}`;
+  }
 
-function playRound(humanChoice, computerChoice) {
-    if(computerChoice === "scissors" && humanChoice === "rock"){
-        humanScore++;;
-    }
-    else if(computerChoice === "rock" && humanChoice === "paper"){
-        humanScore++;
-    }
-    else if(computerChoice === "paper" && humanChoice === "scissors"){
-        humanScore++;
-    } 
-    else if(humanChoice === computerChoice){
-     humanScore += 0;
-     computerScore += 0;   
-    }
-    else{
-        computerScore++;
-    }
-}
+  buttons.forEach(button => {
+    button.addEventListener('click', () => {
+      const humanChoice =
+        button.id === 'r-btn' ? 'rock' :
+        button.id === 'p-btn' ? 'paper' : 'scissors';
 
-function playGame(){
-    //for (let i = 0; i < 5; i++){
-        let humanSelection = getHumanChoice();
-        let computerSelection = getComputerChoice();
-            playRound(humanSelection, computerSelection);
-        console.log(`The scores are: ${humanScore} - ${computerScore}`)    
-    //}
+      const computerChoice = getComputerChoice();
+        humSelection.textContent = `${humanChoice}`;
+      playRound(humanChoice, computerChoice);
+      updateScoreboard();
+    });
+  });
 
-
-}
-
-function checkWinner(){
-    if(computerScore > humanScore){
-        console.log("The computer wins");
-    }
-    else if(humanScore > computerScore){
-        console.log("You win!");
-    }
-    else{
-        console.log("It's a draw")
-    }
-}
-
-const buttonR = document.getElementById('rock');
-const buttonP = document.getElementById('paper');
-const buttonS = document.getElementById('scissors');
-
-
-
-let humanScore = 0;
-let computerScore = 0;
-
-playGame()
-
-/*
-
-
-*/
+  updateScoreboard();
+});
